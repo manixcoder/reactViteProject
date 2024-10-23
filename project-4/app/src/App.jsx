@@ -1,8 +1,9 @@
 
 import { useEffect, useState } from 'react';
 import styled from 'styled-components'
+import SearchResult from './components/SearchResults/SearchResult';
 
-const BASE_URL = "http://localhost:9000/";
+export const BASE_URL = "http://localhost:9000";
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
   if(loading) return <div>loading....</div>
 
   return (
+    <>    
     <Container>
       <TopContainer>
         <div className="logo">
@@ -62,21 +64,19 @@ function App() {
         <Button>Dinner</Button>
       </FilterContainer>
 
-      <FoodCardContainer>
-        <FoodCards>
-
-        </FoodCards>
-
-      </FoodCardContainer>
+     <SearchResult data={data}/>
 
     </Container>
+    <SearchResult data={data}/>
+    </>
+
   )
 }
 
 export default App;
 
 
-const Container = styled.div`
+export const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
 `;
@@ -106,24 +106,14 @@ gap: 12px;
 padding-bottom: 40px;
 `;
 
-const Button = styled.button`
+export const Button = styled.button`
   background: #ff4343;
   border-radius: 5px;
   padding: 6px 12px;
   border: none;
 `;
 
-const FoodCardContainer=styled.section`
-    background-image: url("/bg.png");
-    background-size: cover;
-    min-height: calc(100vh - 210px);
 
-    
-`;
-
-const FoodCards= styled.div`
-
-`;
 
 
 
