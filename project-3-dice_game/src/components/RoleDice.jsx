@@ -1,14 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
 
-const RoleDice = ({
-    currentDice,
-    roleDice
-}) => {
-
-
-    
-
+const RoleDice = ({currentDice,roleDice}) => {
     return (
         <DiceContainer>
             <div className='dice' onClick={() => roleDice()}>
