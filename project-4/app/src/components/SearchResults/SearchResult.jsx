@@ -22,7 +22,7 @@ const SearchResult = ({ data }) => {
                         </FoodCard>))
                     }
                 </FoodCards>
-            </Container>
+            </Container> 
         </FoodCardContainer>
 
     )
