@@ -1,14 +1,19 @@
 import { deleteDoc, doc } from 'firebase/firestore';
-import React from 'react'
+import React, { useState } from 'react'
 
 import { HiOutlineUserCircle } from 'react-icons/hi';
 import { IoMdTrash } from 'react-icons/io';
 import { RiEditCircleLine } from 'react-icons/ri'
 import { db } from '../config/firebase';
 import AddAndUpdateContact from './AddAndUpdateContact';
+import useDisclouse from '../hooks/useDisclouse';
 
 const ContactCard = ({ contact }) => {
     console.log(contact);
+
+    const {isOpen, onClose,onOpen} = useDisclouse();
+
+    
 
     const deleteContact = async (id) => {
         try {
@@ -28,12 +33,13 @@ const ContactCard = ({ contact }) => {
                 </div>
             </div>
             <div className='flex text-3xl'>
-                <RiEditCircleLine />
+                <RiEditCircleLine onClick={onOpen} className='cursor-pointer'/>
                 <IoMdTrash
                     onClick={() => deleteContact(contact.id)} // callback function
-                    className='text-orange' />
+                    className='text-orange cursor-pointer' />
             </div>
-            
+            <AddAndUpdateContact contact={contact} isUpdate isOpen={isOpen} onClose={onClose}/>
+
         </div>
     )
 }
