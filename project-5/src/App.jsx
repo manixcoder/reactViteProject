@@ -4,6 +4,10 @@ import { FaSearch } from "react-icons/fa";
 import { AiFillPlusCircle } from 'react-icons/ai';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from './config/firebase';
+import {HiOutlineUserCircle} from 'react-icons/hi';
+import {IoMdTrash} from 'react-icons/io';
+import {RiEditCircleLine} from 'react-icons/ri'
+import ContactCard from './components/ContactCard';
 
 const App = () => {
 
@@ -42,6 +46,14 @@ const App = () => {
           <AiFillPlusCircle className='text-5xl text-white cursor-pointer' />
 
         </div>
+      </div>
+
+      <div className='mt-4 flex gap-3  flex-col'>
+        {
+          contacts.map((contact)=>(
+            <ContactCard key={contact.id} contact={contact}/>
+          ))
+        }
       </div>
 
     </div>
