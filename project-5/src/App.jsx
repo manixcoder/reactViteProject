@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Navbar from './components/Navbar';
 import { FaSearch } from "react-icons/fa";
 import { AiFillPlusCircle } from 'react-icons/ai';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, onSnapshot } from 'firebase/firestore';
 import { db } from './config/firebase';
 import { HiOutlineUserCircle } from 'react-icons/hi';
 import { IoMdTrash } from 'react-icons/io';
@@ -11,26 +11,31 @@ import ContactCard from './components/ContactCard';
 import Modal from './components/Modal';
 import AddAndUpdateContact from './components/AddAndUpdateContact';
 import useDisclouse from './hooks/useDisclouse';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
 
   const [contacts, setContacts] = useState([]);
-  const {isOpen, onClose,onOpen} = useDisclouse();
+  const { isOpen, onClose, onOpen } = useDisclouse();
 
-  
+
 
 
   useEffect(() => {
     const getContacts = async () => {
       try {
         const contactsRef = collection(db, 'contacts');
-        const contactsSnapshot = await getDocs(contactsRef);
-        const contactLists = contactsSnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data()
-        }));
-        console.log(contactLists);
-        setContacts(contactLists);
+        onSnapshot(contactsRef, (snapshot) => {
+          const contactLists = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data()
+          }));
+          //console.log(contactLists);
+          setContacts(contactLists);
+          return contactLists;
+        })
+
       } catch (error) {
 
       }
@@ -52,7 +57,7 @@ const App = () => {
               />
             </div>
 
-            <AiFillPlusCircle onClick={ onOpen } className='text-5xl text-white cursor-pointer' />
+            <AiFillPlusCircle onClick={onOpen} className='text-5xl text-white cursor-pointer' />
 
           </div>
         </div>
@@ -64,8 +69,9 @@ const App = () => {
             ))
           }
         </div>
-        </div>
-        <AddAndUpdateContact onClose={onClose} isOpen={isOpen}/>
+      </div>
+      <AddAndUpdateContact onClose={onClose} isOpen={isOpen} />
+      <ToastContainer position='bottom-center'/>
     </>
   )
 }

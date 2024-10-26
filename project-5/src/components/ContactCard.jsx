@@ -7,6 +7,7 @@ import { RiEditCircleLine } from 'react-icons/ri'
 import { db } from '../config/firebase';
 import AddAndUpdateContact from './AddAndUpdateContact';
 import useDisclouse from '../hooks/useDisclouse';
+import { toast } from 'react-toastify';
 
 const ContactCard = ({ contact }) => {
     console.log(contact);
@@ -17,7 +18,8 @@ const ContactCard = ({ contact }) => {
 
     const deleteContact = async (id) => {
         try {
-            await deleteDoc(doc(db, "contacts", id))
+            await deleteDoc(doc(db, "contacts", id));
+            toast.success("Contact deleted Successfully");
         } catch (error) {
             console.log();
         }
