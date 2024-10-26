@@ -12,7 +12,7 @@ const AddAndUpdateContact = ({ isOpen, onClose, isUpdate, contact }) => {
             await addDoc(contactRef, contact);
 
             onClose();
-            toast.success("Contact added succefully");
+            toast.success("🦄 Contact added succefully");
         } catch (error) {
             console.log(error);
         }
