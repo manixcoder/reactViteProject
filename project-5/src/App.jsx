@@ -9,6 +9,7 @@ import { IoMdTrash } from 'react-icons/io';
 import { RiEditCircleLine } from 'react-icons/ri'
 import ContactCard from './components/ContactCard';
 import Modal from './components/Modal';
+import AddAndUpdateContact from './components/AddAndUpdateContact';
 
 const App = () => {
 
@@ -69,9 +70,7 @@ const App = () => {
           }
         </div>
         </div>
-        <Modal isOpen={isOpen} onClose={onClose}>
-          Hi manish
-        </Modal>
+        <AddAndUpdateContact onClose={onClose} isOpen={isOpen}/>
     </>
   )
 }
