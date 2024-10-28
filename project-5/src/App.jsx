@@ -14,6 +14,7 @@ import useDisclouse from './hooks/useDisclouse';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { connect } from 'formik';
+import NotFoundContact from './components/NotFoundContact';
 
 const App = () => {
 
@@ -84,7 +85,7 @@ const App = () => {
 
         <div className='mt-4 flex gap-3  flex-col'>
           {
-            contacts.map((contact) => (
+           contacts.length <= 0 ? <NotFoundContact/> : contacts.map((contact) => (
               <ContactCard key={contact.id} contact={contact} />
             ))
           }
