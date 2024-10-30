@@ -1,12 +1,12 @@
 {
-  "name": "project-6",
+  "name": "dashboard",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -21,7 +21,7 @@
     "react-router-dom": "^6.13.0"
   },
   "devDependencies": {
-    "@types/react": "^18.0.37",
+   "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react-swc": "^3.0.0",
     "eslint": "^8.38.0",
