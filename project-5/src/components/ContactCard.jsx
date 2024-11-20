@@ -12,10 +12,7 @@ import { toast } from 'react-toastify';
 const ContactCard = ({ contact }) => {
     console.log(contact);
 
-    const {isOpen, onClose,onOpen} = useDisclouse();
-
-    
-
+    const { isOpen, onClose, onOpen } = useDisclouse();
     const deleteContact = async (id) => {
         try {
             await deleteDoc(doc(db, "contacts", id));
@@ -35,12 +32,12 @@ const ContactCard = ({ contact }) => {
                 </div>
             </div>
             <div className='flex text-3xl'>
-                <RiEditCircleLine onClick={onOpen} className='cursor-pointer'/>
-                <IoMdTrash
-                    onClick={() => deleteContact(contact.id)} // callback function
-                    className='text-orange cursor-pointer' />
+                <RiEditCircleLine onClick={onOpen} className='cursor-pointer' />
+                <IoMdTrash 
+                onClick={() => deleteContact(contact.id)} // callback function
+                className='text-orange cursor-pointer' />
             </div>
-            <AddAndUpdateContact contact={contact} isUpdate isOpen={isOpen} onClose={onClose}/>
+            <AddAndUpdateContact contact={contact} isUpdate isOpen={isOpen} onClose={onClose} />
 
         </div>
     )
